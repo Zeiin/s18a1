@@ -15,8 +15,8 @@ def getUniqueFileID():
 parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter)
 parser.add_argument("rows", type=int,help="Number of points")
 parser.add_argument("cols", type=int,help="Number of dimensions")
-parser.add_argument("dist", type=int,help="""Type of distribution\n1: Uniform Distribution\n2: Centered Uniform
-        Distribution\n3: Beta distribution\n4: Exponential distribution""",choices=[0, 1, 2,3])
+parser.add_argument("dist", type=int,help="""Type of distribution\n0: Uniform Distribution\n1: Centered Uniform
+        Distribution\n2: Beta distribution\n3: Exponential distribution""",choices=[0, 1, 2,3])
 args = parser.parse_args()
 
 fileid = getUniqueFileID()
