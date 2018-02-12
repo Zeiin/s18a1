@@ -29,6 +29,7 @@ rows = args.rows
 dist = args.dist
 
 # generate file header for datafile
+fp.write("TRAINING")
 fp.write(fileid)
 fp.write(struct.pack("=q",args.rows))
 fp.write(struct.pack("=q",args.cols))
