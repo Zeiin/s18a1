@@ -10,7 +10,7 @@ import sys
 
 def getUniqueFileID():
     now = datetime.datetime.now()
-    return now.strftime("%d%H%M%S")
+    return int(now.strftime("%d%H%M%S"))
 
 parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter)
 parser.add_argument("queryCount", type=int,help="Number of queries")
@@ -21,7 +21,7 @@ parser.add_argument("k", type=int,help="Number of neighbors to return for each q
 args = parser.parse_args()
 
 fileid = getUniqueFileID()
-queryfilename = "query_" + fileid + ".dat"
+queryfilename = "query_" + str(fileid) + ".dat"
 
 dp = open(queryfilename,"wb")
 
@@ -32,7 +32,7 @@ k = args.k
 
 #header for query file
 dp.write("QUERY000")
-dp.write(fileid)
+dp.write(struct.pack("=q",fileid))
 dp.write(struct.pack("=q",queryCount))
 dp.write(struct.pack("=q",args.cols))
 dp.write(struct.pack("=q",k))
