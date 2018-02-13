@@ -10,7 +10,7 @@ import sys
 
 def getUniqueFileID():
     now = datetime.datetime.now()
-    return now.strftime("%d%H%M%S")
+    return int(now.strftime("%d%H%M%S"))
 
 parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter)
 parser.add_argument("rows", type=int,help="Number of points")
@@ -20,7 +20,7 @@ parser.add_argument("dist", type=int,help="""Type of distribution\n0: Uniform Di
 args = parser.parse_args()
 
 fileid = getUniqueFileID()
-datafilename = "data_" + fileid + ".dat" 
+datafilename = "data_" + str(fileid) + ".dat" 
 
 fp = open(datafilename,"wb")
 
@@ -30,7 +30,7 @@ dist = args.dist
 
 # generate file header for datafile
 fp.write("TRAINING")
-fp.write(fileid)
+fp.write(struct.pack("=q",getUniqueFileID()))
 fp.write(struct.pack("=q",args.rows))
 fp.write(struct.pack("=q",args.cols))
 
