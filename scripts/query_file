@@ -31,7 +31,9 @@ queryCount = args.queryCount
 k = args.k
 
 #header for query file
-dp.write("QUERY000")
+dp.write("QUERY")
+dp.write(struct.pack("=h",0))
+dp.write(struct.pack("=B",0))
 dp.write(struct.pack("=q",fileid))
 dp.write(struct.pack("=q",queryCount))
 dp.write(struct.pack("=q",args.cols))
